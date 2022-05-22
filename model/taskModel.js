@@ -53,6 +53,10 @@ ClassName : {
     required : true,
     default : 'e-story, e-low, e-nancy-davloio'
 },
+AssigneTo:{
+    type: String,
+    required : false
+},
   createdDate: {
     type: Date,
     required: true,
