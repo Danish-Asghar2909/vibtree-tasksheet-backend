@@ -6,6 +6,36 @@ router.get('/', async (req, res)=>{
     res.send('Hello World');
 })
 
+
+router.get('/webhook', async (req, res)=>{
+    const mode = req.query["hub.mode"];
+    const token = req.query["hub.verify_token"];
+    const challenge = req.query["hub.challenge"];
+    if(mode && token){
+        if(mode === 'subscribe' && token === 'Vibtree@123'){
+            res.status(200).send(challenge);
+        }else{
+            res.sendStatus(403);
+        }
+    }
+})
+
+router.post('/webhook', async (req, res)=>{
+    const data = req.body;
+    console.log("body : ",data);
+    if(data.object === 'page'){
+        data.entry.forEach(async (pageEntry)=>{
+            pageEntry.messaging.forEach(async (messagingEvent)=>{
+                if(messagingEvent.message){
+                    receiveMessage(messagingEvent);
+                }
+            })
+        })
+        res.sendStatus(200);
+    }
+    return res.status(200).json(data);
+})
+
 router.get('/task', async (req, res)=>{
     try{
         const task = await TaskModel.find();
