@@ -24,8 +24,13 @@ router.post('/webhook', async (req, res)=>{
     const data = req.body;
     console.log("body : ",data);
     console.log("entry : ", data.entry);
-    console.log("message : ",data.entry[0].messaging[0].message);
-    console.log("message text : ",data.entry[0].messaging[0].message.text);
+    
+
+    data.entry.map((entry)=>{
+        console.log("data.entry : ", entry);
+        console.log("data.entry.changes : ", entry.changes);
+    })
+
     console.log("object : ", JSON.stringify(data));
 
     if(data.object === 'page'){
