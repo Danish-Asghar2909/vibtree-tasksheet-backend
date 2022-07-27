@@ -23,6 +23,11 @@ router.get('/webhook', async (req, res)=>{
 router.post('/webhook', async (req, res)=>{
     const data = req.body;
     console.log("body : ",data);
+    console.log("entry : ", data.entry);
+    console.log("message : ",data.entry[0].messaging[0].message);
+    console.log("message text : ",data.entry[0].messaging[0].message.text);
+    console.log("object : ", JSON.stringify(data));
+
     if(data.object === 'page'){
         data.entry.forEach(async (pageEntry)=>{
             pageEntry.messaging.forEach(async (messagingEvent)=>{
