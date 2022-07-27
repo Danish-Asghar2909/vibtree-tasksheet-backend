@@ -23,13 +23,13 @@ router.get('/webhook', async (req, res)=>{
 router.post('/webhook', async (req, res)=>{
     const data = req.body;
     console.log("body : ",data);
-    console.log("entry : ", data.entry);
+    // console.log("entry : ", data.entry);
     
 
-    data.entry.map((entry)=>{
-        console.log("data.entry : ", entry);
-        console.log("data.entry.changes : ", entry.changes);
-    })
+    // data.entry.map((entry)=>{
+    //     console.log("data.entry : ", entry);
+    //     console.log("data.entry.changes : ", entry.changes);
+    // })
 
     console.log("object : ", JSON.stringify(data));
 
